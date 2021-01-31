@@ -1,0 +1,35 @@
+server:
+  port: 8005
+spring:
+  application:
+    name: config-center
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/VeinXuan/spring_cloud_learning/      # 配置git仓库的地址
+          search-paths: config-repo
+          username: 2250369631@qq.com                               # git仓库的账号
+          password: ca6911800
+
+ump:
+  litemq:
+    defualtTag: xuanwei
+    client[0]:
+      configId: pouConsumer
+      topic: T_HRCM_POU_TRIGGER
+      threadNum: 4
+      tag: ${ump.defaultTag}
+      subGroup: pou_group
+    client[1]:
+      configId: hccConsumer
+      topic: T_HRCM_HCC_TRIGGER
+      threadNum: 3
+      tag: ${ump.defaultTag}
+      subGroup: hcc_group
+    client[2]:
+      configId: homsConsumer
+      topic: T_HRCM_HOMS_TRIGGER
+      threadNum: 2
+      tag: ${ump.defaultTag}
+      subGroup: homs_group
